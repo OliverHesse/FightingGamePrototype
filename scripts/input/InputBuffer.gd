@@ -14,7 +14,8 @@ var inputAscii = {
 
 var buffer : Array[FrameInputData] = [FrameInputData.new()]
 # Called when the node enters the scene tree for the first time.
-
+func getLastInputDirection() -> Vector2i:
+	return buffer[buffer.size()-1].input
 func getInput() -> Vector2i:
 	var x :int = 0
 	var y :int = 0

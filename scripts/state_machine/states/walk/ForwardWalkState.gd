@@ -1,0 +1,32 @@
+extends MovementState
+class_name ForwardWalkState
+
+const SPEED = 100
+
+func getDirection()->Vector2i:
+	#TODO will return which way the character is facing
+	#for now just return right
+	return Vector2i.RIGHT
+func getName()->String:
+	return "Forward Walk"
+func processFrame(delta:float)->State:
+	super(delta)
+	
+	getCharacter().velocity.x = SPEED*getDirection().x
+	var input = getInputBuffer().getLastInputDirection()
+	if input == Vector2i.ZERO :
+		getCharacter().velocity.x = 0
+		return NeutralState.new()
+	if input == getDirection()+Vector2i.DOWN:
+		return ForwardJumpState.new()
+	if input == getDirection()*-1+Vector2i.DOWN:
+		return BackwardJumpState.new()
+	if input == getDirection()+Vector2i.UP:
+		return ForwardCrouchState.new()
+	if input == getDirection()*-1+Vector2i.UP:
+		return BackwardCrouchState.new()
+	if getCharacter().is_on_floor() and getInputBuffer().getLastInputDirection() == getDirection()*-1:
+		return	BackwardsWalkState.new()
+	if input == Vector2i.UP:
+		return NeutralCrouchState.new()
+	return null

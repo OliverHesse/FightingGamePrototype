@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://dc38cajc15jul"]
+
+[ext_resource type="Script" uid="uid://baprsai367hbq" path="res://scripts/PlayerController.gd" id="1_gdyot"]
+[ext_resource type="Script" uid="uid://dnoyul0dq4j0a" path="res://scripts/debug/ReadState.gd" id="2_id2wk"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_h5gac"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ctc8u"]
+size = Vector2(32, 32)
+
+[sub_resource type="LabelSettings" id="LabelSettings_id2wk"]
+
+[node name="TestPlayerScene" type="CharacterBody2D" unique_id=1958882451 node_paths=PackedStringArray("character")]
+script = ExtResource("1_gdyot")
+character = NodePath(".")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=330547720]
+scale = Vector2(32, 32)
+texture = SubResource("PlaceholderTexture2D_h5gac")
+
+[node name="Hurtbox" type="CollisionShape2D" parent="." unique_id=1018638101]
+shape = SubResource("RectangleShape2D_ctc8u")
+
+[node name="Label" type="Label" parent="." unique_id=1468753493]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -36.0
+offset_right = 20.0
+offset_bottom = -13.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "State"
+label_settings = SubResource("LabelSettings_id2wk")
+horizontal_alignment = 1
+script = ExtResource("2_id2wk")
+
+[connection signal="state_changed" from="." to="Label" method="_on_test_player_scene_state_changed"]

@@ -1,5 +1,5 @@
 extends Node2D
-
+class_name InputReader
 var inputBuffer : InputBuffer = InputBuffer.new()
-func _physics_process(delta: float) -> void:
+func processFrame() -> void:
 	inputBuffer.update()

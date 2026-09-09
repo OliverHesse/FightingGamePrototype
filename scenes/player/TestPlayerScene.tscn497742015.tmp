@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://dc38cajc15jul"]
+
+[ext_resource type="Script" uid="uid://baprsai367hbq" path="res://scripts/PlayerController.gd" id="1_gdyot"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_h5gac"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ctc8u"]
+size = Vector2(32, 32)
+
+[node name="TestPlayerScene" type="CharacterBody2D" unique_id=1958882451 node_paths=PackedStringArray("character")]
+script = ExtResource("1_gdyot")
+character = NodePath(".")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=330547720]
+scale = Vector2(32, 32)
+texture = SubResource("PlaceholderTexture2D_h5gac")
+
+[node name="Hurtbox" type="CollisionShape2D" parent="." unique_id=1018638101]
+shape = SubResource("RectangleShape2D_ctc8u")
