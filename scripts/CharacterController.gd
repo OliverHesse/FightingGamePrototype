@@ -1,12 +1,15 @@
 extends CharacterBody2D
+class_name PlayerController
+# does not need to be a human, cpu count as player
 signal state_changed(stateMachine:StateMachine)
 
-@export var character :CharacterBody2D
-var stateMachine = StateMachine.new()
-var inputReader = InputReader.new()
+@export var stateMachine:StateMachine
+@export var inputReader:InputReader
+
+
 
 func _ready() -> void:
-	stateMachine.init(character,inputReader)
+	stateMachine.init(self,inputReader)
 	state_changed.emit(stateMachine)
 
 func _physics_process(delta: float) -> void:

@@ -1,11 +1,13 @@
-extends GroundedState
-class_name NeutralState
+extends GroundedState	
+class_name CrouchedState
+
 
 func getName()->String:
-	return "Neutral"
+	return "Crouched"
+	
 func processFrame(delta:float)->State:
 	super(delta)
 	var state = getGroundedStateChange(getCharacter(),getInputBuffer(),getForwardDirection().x)
-	if state is NeutralState:
+	if state is CrouchedState:
 		return null
 	return state

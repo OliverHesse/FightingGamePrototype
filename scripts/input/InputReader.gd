@@ -1,5 +1,6 @@
-extends Node2D
+extends Node
 class_name InputReader
 var inputBuffer : InputBuffer = InputBuffer.new()
+
 func processFrame() -> void:
-	inputBuffer.update()
+	pass

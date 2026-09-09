@@ -1,5 +1,5 @@
 extends State
-class_name MovementState
+class_name GravityState
 
 const gravity:float = 10*64 #assumes 1m = 16px
 

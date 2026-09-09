@@ -1,11 +1,14 @@
 extends GroundedState
-class_name NeutralState
+class_name BackwardWalkState
+
+const SPEED = 3000
 
 func getName()->String:
-	return "Neutral"
+	return "Backward Walk"
 func processFrame(delta:float)->State:
-	super(delta)
+	super(delta)	
+	getCharacter().velocity.x = SPEED * getForwardDirection().x*delta*-1
 	var state = getGroundedStateChange(getCharacter(),getInputBuffer(),getForwardDirection().x)
-	if state is NeutralState:
+	if state is BackwardWalkState:
 		return null
 	return state

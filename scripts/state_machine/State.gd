@@ -21,6 +21,10 @@ func getInputBuffer()->InputBuffer:
 func getFrame()->int:
 	return frame
 	
+func getForwardDirection()->Vector2i:
+	#TODO will return which way the character is facing
+	#for now just return right
+	return Vector2i.RIGHT
 func enter(character:CharacterBody2D,inputReader:InputReader)->void:
 	self.character=character
 	self.inputReader = inputReader

@@ -1,7 +1,9 @@
 [gd_scene format=3 uid="uid://dc38cajc15jul"]
 
-[ext_resource type="Script" uid="uid://baprsai367hbq" path="res://scripts/PlayerController.gd" id="1_gdyot"]
+[ext_resource type="Script" uid="uid://b87mdxcry8e6a" path="res://scripts/CharacterController.gd" id="1_dpphg"]
 [ext_resource type="Script" uid="uid://dnoyul0dq4j0a" path="res://scripts/debug/ReadState.gd" id="2_id2wk"]
+[ext_resource type="Script" uid="uid://dnaqxcxd23sx5" path="res://scripts/input/LocalPlayerInputReader.gd" id="3_f1b2u"]
+[ext_resource type="Script" uid="uid://fjh52dvt5mqy" path="res://scripts/state_machine/StateMachine.gd" id="4_ruxaf"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_h5gac"]
 
@@ -10,9 +12,10 @@ size = Vector2(32, 32)
 
 [sub_resource type="LabelSettings" id="LabelSettings_id2wk"]
 
-[node name="TestPlayerScene" type="CharacterBody2D" unique_id=1958882451 node_paths=PackedStringArray("character")]
-script = ExtResource("1_gdyot")
-character = NodePath(".")
+[node name="TestPlayerScene" type="CharacterBody2D" unique_id=1958882451 node_paths=PackedStringArray("stateMachine", "inputReader")]
+script = ExtResource("1_dpphg")
+stateMachine = NodePath("StateMachine")
+inputReader = NodePath("LocalPlayerInputReader")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=330547720]
 scale = Vector2(32, 32)
@@ -37,5 +40,13 @@ text = "State"
 label_settings = SubResource("LabelSettings_id2wk")
 horizontal_alignment = 1
 script = ExtResource("2_id2wk")
+
+[node name="LocalPlayerInputReader" type="Node2D" parent="." unique_id=258224054]
+script = ExtResource("3_f1b2u")
+metadata/_custom_type_script = "uid://dnaqxcxd23sx5"
+
+[node name="StateMachine" type="Node" parent="." unique_id=27874468]
+script = ExtResource("4_ruxaf")
+metadata/_custom_type_script = "uid://fjh52dvt5mqy"
 
 [connection signal="state_changed" from="." to="Label" method="_on_test_player_scene_state_changed"]
