@@ -4,7 +4,7 @@ class_name State
 
 var phase = Constants.StatePhase.NEUTRAL
 var frame :int = 0
-var character : CharacterBody2D
+var character : PlayerController
 var inputReader : InputReader
 
 # a method mainly used for debugging
@@ -13,7 +13,7 @@ func getName()->String:
 
 func getPhase()->Constants.StatePhase:
 	return phase
-func getCharacter()->CharacterBody2D:
+func getCharacter()->PlayerController:
 	return character
 func getInputBuffer()->InputBuffer:
 	return inputReader.inputBuffer
@@ -21,11 +21,11 @@ func getInputBuffer()->InputBuffer:
 func getFrame()->int:
 	return frame
 	
+#TODO change to int
 func getForwardDirection()->Vector2i:
-	#TODO will return which way the character is facing
-	#for now just return right
-	return Vector2i.RIGHT
-func enter(character:CharacterBody2D,inputReader:InputReader)->void:
+	return Vector2i(character.getForwardDirection(),0)
+	
+func enter(character:PlayerController,inputReader:InputReader)->void:
 	self.character=character
 	self.inputReader = inputReader
 func exit()->void:

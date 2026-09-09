@@ -5,7 +5,7 @@ const JUMP_FORCE = 400
 
 func getName()->String:
 	return "Jump"
-func enter(character:CharacterBody2D,inputReader:InputReader)->void:
+func enter(character:PlayerController,inputReader:InputReader)->void:
 	super(character,inputReader)
 	character.velocity.y = -JUMP_FORCE
 	character.velocity.x = 0

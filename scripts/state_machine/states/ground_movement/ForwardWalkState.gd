@@ -3,6 +3,7 @@ class_name ForwardWalkState
 
 const SPEED = 6000
 
+
 func getName()->String:
 	return "Forward Walk"
 func processFrame(delta:float)->State:

@@ -7,6 +7,8 @@ signal state_changed(stateMachine:StateMachine)
 @export var inputReader:InputReader
 
 
+func getForwardDirection()->int:
+	return get_parent().getForwardDirection(self)
 
 func _ready() -> void:
 	stateMachine.init(self,inputReader)

@@ -2,11 +2,11 @@ extends GravityState
 class_name GroundedState
 
 
-func enter(character:CharacterBody2D,inputReader:InputReader)->void:
+func enter(character:PlayerController,inputReader:InputReader)->void:
 	super(character,inputReader)
 	character.velocity.x = 0
 #a generic movement function all stats extending Grounded State can use
-static func getGroundedStateChange(character:CharacterBody2D,inputBuffer:InputBuffer,forwardDirection:int)->State:
+static func getGroundedStateChange(character:PlayerController,inputBuffer:InputBuffer,forwardDirection:int)->State:
 	var input = inputBuffer.getLastInputDirection()
 	if character.is_on_floor():
 			if input == Vector2i.ZERO:

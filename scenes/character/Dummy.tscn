@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://bsojx85atvghx"]
+
+[ext_resource type="Script" uid="uid://dnoyul0dq4j0a" path="res://scripts/debug/ReadState.gd" id="1_0qw84"]
+[ext_resource type="Script" uid="uid://b87mdxcry8e6a" path="res://scripts/CharacterController.gd" id="1_bt8ke"]
+[ext_resource type="Script" uid="uid://fjh52dvt5mqy" path="res://scripts/state_machine/StateMachine.gd" id="3_qsi8a"]
+[ext_resource type="Script" uid="uid://duomb44dek3pm" path="res://scripts/input/InputReader.gd" id="4_qsi8a"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_aufpw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0b3e2"]
+size = Vector2(32, 32)
+
+[sub_resource type="LabelSettings" id="LabelSettings_hhp4g"]
+
+[node name="Dummy" type="CharacterBody2D" unique_id=1993435847 node_paths=PackedStringArray("stateMachine", "inputReader")]
+script = ExtResource("1_bt8ke")
+stateMachine = NodePath("StateMachine")
+inputReader = NodePath("InputReader")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=983222480]
+scale = Vector2(32, 32)
+texture = SubResource("PlaceholderTexture2D_aufpw")
+
+[node name="Hurtbox" type="CollisionShape2D" parent="." unique_id=1478630316]
+shape = SubResource("RectangleShape2D_0b3e2")
+
+[node name="Label" type="Label" parent="." unique_id=572255905]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -36.0
+offset_right = 20.0
+offset_bottom = -13.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "State"
+label_settings = SubResource("LabelSettings_hhp4g")
+horizontal_alignment = 1
+script = ExtResource("1_0qw84")
+
+[node name="StateMachine" type="Node" parent="." unique_id=2049089147]
+script = ExtResource("3_qsi8a")
+metadata/_custom_type_script = "uid://fjh52dvt5mqy"
+
+[node name="InputReader" type="Node" parent="." unique_id=231210526]
+script = ExtResource("4_qsi8a")
+metadata/_custom_type_script = "uid://duomb44dek3pm"
+
+[connection signal="state_changed" from="." to="Label" method="_on_test_player_scene_state_changed"]

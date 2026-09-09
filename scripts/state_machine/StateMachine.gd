@@ -1,10 +1,10 @@
 extends Node
 class_name StateMachine
 
-var character : CharacterBody2D
+var character : PlayerController
 var inputReader : InputReader
 var activeState : State = NeutralState.new()
-func init(character:CharacterBody2D,inputReader:InputReader):
+func init(character:PlayerController,inputReader:InputReader):
 	self.character = character
 	self.inputReader = inputReader
 	activeState.enter(character,inputReader)
