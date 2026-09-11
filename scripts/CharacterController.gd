@@ -6,6 +6,10 @@ signal state_changed(stateMachine:StateMachine)
 @export var stateMachine:StateMachine
 @export var inputReader:InputReader
 
+func play_animation(anim:String,speed:float = 1)->void:
+	
+	$AnimationPlayer.play(anim,-1,speed)
+	
 
 func getForwardDirection()->int:
 	return get_parent().getForwardDirection(self)

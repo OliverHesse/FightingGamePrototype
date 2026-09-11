@@ -1,8 +1,12 @@
 extends GroundedState
 class_name BackwardWalkState
 
-const SPEED = 3000
+const SPEED = 2500
 
+func enter(character:PlayerController,inputReader:InputReader)->void:
+	super(character,inputReader)
+	getCharacter().play_animation("test_character_walk",-0.5)
+	
 func getName()->String:
 	return "Backward Walk"
 func processFrame(delta:float)->State:

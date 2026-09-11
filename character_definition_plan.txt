@@ -1,0 +1,105 @@
+At the end of the day. one of the things I want to be able to do. is generate characters
+exlcusivly through data files (json most likely)
+
+there are some problems with this. mainly, it adds limitations
+
+for most characters, this is not an issue. however it limits the future scope of characters
+
+for this reason, I will be stealing from minecraft a bit and implement a character type system
+
+essentially, you can define a cahracter type. a character type, constructs a character
+
+I would then setup a registry that holds character type deserializers.
+
+so in the file it would look like
+
+"type":"simple"
+
+which then gets the simple deserializer to construct a character type
+
+now a Character Definition, encompases more than jsut the character type.
+this is because the character will also have non fighting game details(aka the card game aspect)
+
+so a character defintion ends up being multiple json files combined(not just 1 for ease of use)
+
+
+Animations
+I will be using a custom animation node(very simplified) that only controls Sprites and Collision boxes
+
+this is because the animation is inherintly linked to the frame data, so i only want the animation to advance if the state 
+is also advancing
+
+for this reason. animations will also be represented in file format(once again prob json)
+that get loaded into memeory when the character type creates a character
+
+a character type json file can reference multiple animation files.
+(can prevent a single file getting too big)
+in that scenario, when refrencing an animation it should be done as filename:animation_name
+therefore you cannot have files sharing the same name
+
+
+file locations
+
+For now it will be internall. However, it will eventually be nescesary to set it up shuch that
+they are not directly packaged with the .exe, but in some resource folder
+
+I will once again "steal" from minecraft here and setup a VERY SIMPLIFIED datapack system
+
+so all of our base characters will be defined in some namespace
+if a datapack overrides that namespace it is replaced
+
+
+multiplayer concerns.
+
+stuff like colliders will also be handled in these files. which will obviously cause problems
+when we start trying to play online
+
+I could also then seperate the animation into a visual_ and data_ animation for hasihgn
+
+in simple terms
+
+the user will generate a file hash. the matchmaking server expects a certain hash
+if the hash does not match they cannot join
+(it is possible for clients to fake their hash. in those cases we just need to run off "trust")
+
+if they do bypass it rollback net code should be able to detect it and terminate the game
+
+
+I would then setup lobbies that dont check against a Server game hash but against the lobby hosts hash
+
+
+as long as I setup the hash correctly, player should be able to use visual mods
+(skins) but not gameplay mods(at least for official matchmaking)
+
+
+
+
+
+Generating frame data 
+On of the problems that will turn up is hurtboxes and hitboxes.
+because characters dont have 1 hurtbox but might have multiplie in some moves
+for this reason when geneating the cahracter we determine the max number of each needed
+then assign each animations hit/hurtbox to one of them. when an animaiont is played
+all are disabled, then only those that are needed are enabled
+
+
+
+state data
+
+each sate will recieve data. this data will include its animation(consider fully splittting the sprite anoimation and hitbox/hurtbox animations?)
+(this will be played at the start, includes data like speed and loop)
+
+attacks will have extra meta data, that is attached to the hitboxes
+the main thing is when a hit is detected, disable that hitbox
+
+for attacks recovery frames might differ depnding on outcome
+(although for blocks and stuff this is mainly handled through hitstun/blockstun)
+however some people might want conditional animations to play on recovry
+so first i add an animation condition
+then the animation
+(wont do a registry situation for this, since for attacks it will always be the same)
+
+so for an attack on recovery it will recive the attack data,namely the opponents result
+here we can react differntly to hit,miss or block.
+on top of that each might have subtypes (e.g some styles might include a parry) that has conditional recovery
+s

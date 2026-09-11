@@ -1,0 +1,15 @@
+since I will end up creating a lot of characters i need a way to auto generate them
+aka have a generic CharacterScene
+
+That is an option. however I could always just say fuck it and require every character to have their own scene
+
+but at the end of the day. the state machine will need details, like animation names, move lists, hitboxes etc
+that it just cannot access by itself
+
+not 100% sure how i want to handle this yet
+
+
+
+a way i am imagining is creating a tool/process that takes in some custom file definition
+and creats/ pre generates all the scenese for me. this would be good for hurtbox stuff since if the character has
+a variable number of hurtboxes active at any time it would create the max needed and auto scale them and activate/deactivate them for animations

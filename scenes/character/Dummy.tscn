@@ -49,4 +49,6 @@ metadata/_custom_type_script = "uid://fjh52dvt5mqy"
 script = ExtResource("4_qsi8a")
 metadata/_custom_type_script = "uid://duomb44dek3pm"
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=492081738]
+
 [connection signal="state_changed" from="." to="Label" method="_on_test_player_scene_state_changed"]

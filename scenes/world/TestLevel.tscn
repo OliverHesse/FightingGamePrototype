@@ -30,8 +30,8 @@ collision_visibility_mode = 1
 position = Vector2(316, 433)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1019686817]
-position = Vector2(536, 424)
-zoom = Vector2(2, 2)
+position = Vector2(524, 417)
+zoom = Vector2(3, 3)
 
 [node name="P1Spawn" type="Node2D" parent="." unique_id=682550173]
 position = Vector2(382, 449)

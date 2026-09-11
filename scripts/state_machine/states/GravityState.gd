@@ -1,7 +1,7 @@
 extends State
 class_name GravityState
 
-const gravity:float = 10*64 #assumes 1m = 16px
+const gravity:float = 10*128 #assumes 1m = 16px
 
 
 func processFrame(delta:float)->State:

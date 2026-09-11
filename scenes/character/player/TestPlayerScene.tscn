@@ -1,16 +1,241 @@
 [gd_scene format=3 uid="uid://dc38cajc15jul"]
 
 [ext_resource type="Script" uid="uid://b87mdxcry8e6a" path="res://scripts/CharacterController.gd" id="1_dpphg"]
+[ext_resource type="Texture2D" uid="uid://bv4gcuhah1ouy" path="res://textures/characters/test_character_1/test_character_1.png" id="2_haxfm"]
 [ext_resource type="Script" uid="uid://dnoyul0dq4j0a" path="res://scripts/debug/ReadState.gd" id="2_id2wk"]
 [ext_resource type="Script" uid="uid://dnaqxcxd23sx5" path="res://scripts/input/LocalPlayerInputReader.gd" id="3_f1b2u"]
 [ext_resource type="Script" uid="uid://fjh52dvt5mqy" path="res://scripts/state_machine/StateMachine.gd" id="4_ruxaf"]
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_h5gac"]
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ctc8u"]
-size = Vector2(32, 32)
+size = Vector2(18, 49)
 
 [sub_resource type="LabelSettings" id="LabelSettings_id2wk"]
+
+[sub_resource type="Animation" id="Animation_haxfm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:frame_coords")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(3, 8)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CollisionBox:shape:size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(18, 49)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CollisionBox:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1.5)]
+}
+
+[sub_resource type="Animation" id="Animation_tadvf"]
+resource_name = "test_character_crouch"
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(3, 8)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionBox:shape:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(25, 40)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CollisionBox:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(4.5, 6)]
+}
+
+[sub_resource type="Animation" id="Animation_7v74v"]
+resource_name = "test_character_idle"
+length = 0.8
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionBox:shape:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(18, 49)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CollisionBox:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(1, 1.5)]
+}
+
+[sub_resource type="Animation" id="Animation_7m7sx"]
+resource_name = "test_character_jump"
+length = 0.2
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionBox:shape:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(11, 53)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionBox:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1.5)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [10, 11, 12]
+}
+
+[sub_resource type="Animation" id="Animation_uee46"]
+resource_name = "test_character_walk"
+length = 0.6
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.09999998, 0.2, 0.3, 0.39999998, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [30, 31, 32, 33, 34, 35, 36]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionBox:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(1, 1.5)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CollisionBox:shape:size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(18, 49)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uee46"]
+_data = {
+&"RESET": SubResource("Animation_haxfm"),
+&"test_character_crouch": SubResource("Animation_tadvf"),
+&"test_character_idle": SubResource("Animation_7v74v"),
+&"test_character_jump": SubResource("Animation_7m7sx"),
+&"test_character_walk": SubResource("Animation_uee46")
+}
 
 [node name="TestPlayerScene" type="CharacterBody2D" unique_id=1958882451 node_paths=PackedStringArray("stateMachine", "inputReader")]
 script = ExtResource("1_dpphg")
@@ -18,10 +243,14 @@ stateMachine = NodePath("StateMachine")
 inputReader = NodePath("LocalPlayerInputReader")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=330547720]
-scale = Vector2(32, 32)
-texture = SubResource("PlaceholderTexture2D_h5gac")
+position = Vector2(0, -34)
+texture = ExtResource("2_haxfm")
+hframes = 10
+vframes = 20
+frame = 83
 
-[node name="Hurtbox" type="CollisionShape2D" parent="." unique_id=1018638101]
+[node name="CollisionBox" type="CollisionShape2D" parent="." unique_id=1018638101]
+position = Vector2(1, 1.5)
 shape = SubResource("RectangleShape2D_ctc8u")
 
 [node name="Label" type="Label" parent="." unique_id=1468753493]
@@ -30,10 +259,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -36.0
-offset_right = 20.0
-offset_bottom = -13.0
+offset_left = -19.0
+offset_top = -44.0
+offset_right = 21.0
+offset_bottom = -21.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "State"
@@ -48,5 +277,8 @@ metadata/_custom_type_script = "uid://dnaqxcxd23sx5"
 [node name="StateMachine" type="Node" parent="." unique_id=27874468]
 script = ExtResource("4_ruxaf")
 metadata/_custom_type_script = "uid://fjh52dvt5mqy"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2024249571]
+libraries/ = SubResource("AnimationLibrary_uee46")
 
 [connection signal="state_changed" from="." to="Label" method="_on_test_player_scene_state_changed"]
