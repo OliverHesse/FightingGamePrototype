@@ -5,6 +5,12 @@ class_name GroundedState
 func enter(character:PlayerController,inputReader:InputReader)->void:
 	super(character,inputReader)
 	character.velocity.x = 0
+	
+func processFrame(delta:float)->State:
+	super(delta)
+	character.scale.x = character.getForwardDirection()
+	print(character.to_string()+ "scale : "+str(character.scale.x))
+	return null
 #a generic movement function all stats extending Grounded State can use
 static func getGroundedStateChange(character:PlayerController,inputBuffer:InputBuffer,forwardDirection:int)->State:
 	var input = inputBuffer.getLastInputDirection()

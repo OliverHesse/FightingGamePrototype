@@ -10,12 +10,14 @@ func _ready() -> void:
 
 func getForwardDirection(character:CharacterBody2D)->int:
 	if character == player1 :
+
 		var dir = clampi(player2.position.x-player1.position.x,-1,1)
 		if(dir == 0):
 			return 1
 		return dir
 		
 	if character == player2 :
+		
 		var dir = clampi(player2.position.x-player1.position.x,-1,1)
 		if(dir == 0):
 			return -1

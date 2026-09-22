@@ -12,10 +12,11 @@ size = Vector2(32, 32)
 
 [sub_resource type="LabelSettings" id="LabelSettings_hhp4g"]
 
-[node name="Dummy" type="CharacterBody2D" unique_id=1993435847 node_paths=PackedStringArray("stateMachine", "inputReader")]
+[node name="Dummy" type="CharacterBody2D" unique_id=1993435847 node_paths=PackedStringArray("stateMachine", "inputReader", "colliderBox")]
 script = ExtResource("1_bt8ke")
 stateMachine = NodePath("StateMachine")
 inputReader = NodePath("InputReader")
+colliderBox = NodePath("Hurtbox")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=983222480]
 scale = Vector2(32, 32)

@@ -8,6 +8,7 @@ func enter(character:PlayerController,inputReader:InputReader)->void:
 	getCharacter().play_animation("test_character_idle")
 func processFrame(delta:float)->State:
 	super(delta)
+	
 	var state = getGroundedStateChange(getCharacter(),getInputBuffer(),getForwardDirection().x)
 	if state is NeutralState:
 		return null
