@@ -8,8 +8,8 @@ func enter(character:PlayerController,inputReader:InputReader)->void:
 	
 func processFrame(delta:float)->State:
 	super(delta)
-	character.scale.x = character.getForwardDirection()
-	print(character.to_string()+ "scale : "+str(character.scale.x))
+	character.changeDirection()
+	
 	return null
 #a generic movement function all stats extending Grounded State can use
 static func getGroundedStateChange(character:PlayerController,inputBuffer:InputBuffer,forwardDirection:int)->State:

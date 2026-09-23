@@ -23,9 +23,14 @@ func _ready() -> void:
 	stateMachine.init(self,inputReader)
 	state_changed.emit(stateMachine)
 
+func changeDirection() ->void:
+	var dir = getForwardDirection()
+	for child in get_children():
+		if child is Node2D:
+			child.scale.x	= dir*abs(child.scale.x)
+
 func _physics_process(delta: float) -> void:
 	inputReader.processFrame()
-	print(self.to_string()+" scale : "+str(self.scale.x))
+
 	if stateMachine.processFrame(delta):
 		state_changed.emit(stateMachine)
-		

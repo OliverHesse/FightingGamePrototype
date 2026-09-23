@@ -9,17 +9,16 @@ func _ready() -> void:
 	player2.position = $P2Spawn.position
 
 func getForwardDirection(character:CharacterBody2D)->int:
-	if character == player1 :
+	var dir = sign(player2.position.x - player1.position.x)
 
-		var dir = clampi(player2.position.x-player1.position.x,-1,1)
-		if(dir == 0):
+	if character == player1:
+		if dir == 0:
 			return 1
 		return dir
-		
-	if character == player2 :
-		
-		var dir = clampi(player2.position.x-player1.position.x,-1,1)
-		if(dir == 0):
+
+	if character == player2:
+		if dir == 0:
 			return -1
-		return dir
+		return -dir
+
 	return 1

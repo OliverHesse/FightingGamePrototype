@@ -13,7 +13,9 @@ func processFrame(delta:float):
 	var state = activeState.processFrame(delta)
 	if state != null :
 		changeState(state)
+
 	character.move_and_slide()
+	
 	return state != null
 
 func changeState(state:State):

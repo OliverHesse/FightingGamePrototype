@@ -22,12 +22,17 @@ func shift_position():
 			var normal = collision.get_normal()
 			if normal.y < -0.7:
 				var pushDir = sign(collider.position.x-character.position.x)
-				var x = collider.position.x - pushDir*(collider.getWidth()/2+character.getWidth()/2)
+				var safe = 8 #extra distance to ensure no clipping or anything
+				var x = collider.position.x - pushDir*((collider.getWidth()/2+character.getWidth()/2)+safe)
 				character.position.x = x
-				character.position.y = (collider.position.y+collider.getHeight()/2)-character.getHeight()/2
+				return true
+	return false
+				
 func processFrame(delta:float)->State:
-	super(delta)
 	shift_position()
+	super(delta)
+
+	print(character.velocity.y)
 	#TODO adjust to read after jump startup
 	if getFrame() > 1 and getCharacter().is_on_floor():
 		return GroundedState.getGroundedStateChange(getCharacter(),getInputBuffer(),getForwardDirection().x)
