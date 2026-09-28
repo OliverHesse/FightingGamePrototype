@@ -102,4 +102,3 @@ then the animation
 so for an attack on recovery it will recive the attack data,namely the opponents result
 here we can react differntly to hit,miss or block.
 on top of that each might have subtypes (e.g some styles might include a parry) that has conditional recovery
-s
