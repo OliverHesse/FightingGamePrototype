@@ -27,13 +27,14 @@ func getFrame()->int:
 func enter(character:CharacterController,inputReader:InputReader)->void:
 	self.character=character
 	self.inputReader = inputReader
+
 func exit()->void:
 	pass
 #TODO pass Frame Data
 func processFrame(delta:float):
 	frame += 1
 
-func evaluateState()->State:
+func resolveState()->State:
 	for transition in transitions:
 		var nextState = transition.evaluate(character,inputReader.inputBuffer,self)
 		if nextState != null:

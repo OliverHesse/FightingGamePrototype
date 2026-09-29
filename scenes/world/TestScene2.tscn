@@ -4,6 +4,8 @@
 [ext_resource type="Script" uid="uid://bd3j34hd3ka2a" path="res://scenes/world/Test.gd" id="1_xvhtr"]
 [ext_resource type="Texture2D" uid="uid://bnk82a3wvp1lg" path="res://textures/world/temp/TempTile.png" id="2_hfw4b"]
 [ext_resource type="Script" uid="uid://cgpfox43rjfo0" path="res://scripts/v2/custom_movement/MovementHandler.gd" id="4_3vsrn"]
+[ext_resource type="Script" uid="uid://dnaqxcxd23sx5" path="res://scripts/input/LocalPlayerInputReader.gd" id="5_tnrp5"]
+[ext_resource type="Script" uid="uid://duomb44dek3pm" path="res://scripts/input/InputReader.gd" id="6_u042d"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xvhtr"]
 texture = ExtResource("2_hfw4b")
@@ -14,15 +16,22 @@ texture = ExtResource("2_hfw4b")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_xvhtr")
 
-[node name="TestScene2" type="Node2D" unique_id=1321890126 node_paths=PackedStringArray("characters")]
+[node name="TestScene2" type="Node2D" unique_id=1321890126 node_paths=PackedStringArray("p1", "p2", "movementHandler")]
 script = ExtResource("1_xvhtr")
-characters = [NodePath("Character")]
+p1 = NodePath("Character")
+p2 = NodePath("Character2")
+movementHandler = NodePath("MovementHandler")
 ground = 510
-leftWall = 250
-rightWall = 825
+leftWall = 256
+rightWall = 816
 
-[node name="Character" parent="." unique_id=1385581417 instance=ExtResource("1_2143h")]
-position = Vector2(748.96204, 354.58072)
+[node name="Character" parent="." unique_id=1385581417 node_paths=PackedStringArray("inputReader") instance=ExtResource("1_2143h")]
+position = Vector2(693, 421)
+inputReader = NodePath("../P1Reader")
+
+[node name="Character2" parent="." unique_id=330441746 node_paths=PackedStringArray("inputReader") instance=ExtResource("1_2143h")]
+position = Vector2(576, 407)
+inputReader = NodePath("../P2Reader")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=257380357]
 tile_map_data = PackedByteArray("AAAAACAAAAAAAAAAAAABACAAAAAAAAAAAAACACAAAAAAAAAAAAADACAAAAAAAAAAAAAEACAAAAAAAAAAAAAFACAAAAAAAAAAAAAGACAAAAAAAAAAAAAHACAAAAAAAAAAAAAIACAAAAAAAAAAAAAJACAAAAAAAAAAAAAKACAAAAAAAAAAAAALACAAAAAAAAAAAAAMACAAAAAAAAAAAAANACAAAAAAAAAAAAAOACAAAAAAAAAAAAAPACAAAAAAAAAAAAAQACAAAAAAAAAAAAARACAAAAAAAAAAAAASACAAAAAAAAAAAAATACAAAAAAAAAAAAAUACAAAAAAAAAAAAAVACAAAAAAAAAAAAAWACAAAAAAAAAAAAAXACAAAAAAAAAAAAAYACAAAAAAAAAAAAAZACAAAAAAAAAAAAAaACAAAAAAAAAAAAAbACAAAAAAAAAAAAAcACAAAAAAAAAAAAAdACAAAAAAAAAAAAAeACAAAAAAAAAAAAAfACAAAAAAAAAAAAAgACAAAAAAAAAAAAAhACAAAAAAAAAAAAAiACAAAAAAAAAAAAAjACAAAAAAAAAAAAAkACAAAAAAAAAAAAAlACAAAAAAAAAAAAAmACAAAAAAAAAAAAAnACAAAAAAAAAAAAAoACAAAAAAAAAAAAApACAAAAAAAAAAAAAqACAAAAAAAAAAAAArACAAAAAAAAAAAAAsACAAAAAAAAAAAAAtACAAAAAAAAAAAAAuACAAAAAAAAAAAAAvACAAAAAAAAAAAAAwACAAAAAAAAAAAAAxACAAAAAAAAAAAAAyACAAAAAAAAAAAAAzACAAAAAAAAAAAAA0ACAAAAAAAAAAAAA1ACAAAAAAAAAAAAA2ACAAAAAAAAAAAAA3ACAAAAAAAAAAAAA4ACAAAAAAAAAAAAA5ACAAAAAAAAAAAAA6ACAAAAAAAAAAAAA7ACAAAAAAAAAAAAA8ACAAAAAAAAAAAAA9ACAAAAAAAAAAAAA+ACAAAAAAAAAAAAA/ACAAAAAAAAAAAABAACAAAAAAAAAAAABBACAAAAAAAAAAAABCACAAAAAAAAAAAABDACAAAAAAAAAAAABEACAAAAAAAAAAAABFACAAAAAAAAAAAABGACAAAAAAAAAAAABHACAAAAAAAAAAAAAPAB8AAAAAAAAAAAAPAB4AAAAAAAAAAAAPAB0AAAAAAAAAAAAPABwAAAAAAAAAAAAPABsAAAAAAAAAAAAPABoAAAAAAAAAAAAPABkAAAAAAAAAAAAPABgAAAAAAAAAAAAPABcAAAAAAAAAAAAPABYAAAAAAAAAAAAPABUAAAAAAAAAAAAPABQAAAAAAAAAAAAPABMAAAAAAAAAAAAPABIAAAAAAAAAAAAPABEAAAAAAAAAAAAzAB8AAAAAAAAAAAAzAB4AAAAAAAAAAAAzAB0AAAAAAAAAAAAzABwAAAAAAAAAAAAzABsAAAAAAAAAAAAzABoAAAAAAAAAAAAzABkAAAAAAAAAAAAzABgAAAAAAAAAAAAzABcAAAAAAAAAAAAzABYAAAAAAAAAAAAzABUAAAAAAAAAAAAzABQAAAAAAAAAAAAzABMAAAAAAAAAAAAzABIAAAAAAAAAAAAzABEAAAAAAAAAAAAzABAAAAAAAAAAAAA=")
@@ -30,7 +39,7 @@ tile_set = SubResource("TileSet_3vsrn")
 collision_visibility_mode = 1
 
 [node name="LEFT" type="Node2D" parent="." unique_id=1937744955]
-position = Vector2(249, 439)
+position = Vector2(256, 440)
 script = ExtResource("4_3vsrn")
 
 [node name="GROUND" type="Node2D" parent="." unique_id=1581128354]
@@ -38,9 +47,21 @@ position = Vector2(539, 513)
 script = ExtResource("4_3vsrn")
 
 [node name="RIGHT" type="Node2D" parent="." unique_id=1885179916]
-position = Vector2(824, 439)
+position = Vector2(816, 439)
 script = ExtResource("4_3vsrn")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1385828618]
-position = Vector2(751, 427)
+position = Vector2(580, 420)
 zoom = Vector2(2, 2)
+
+[node name="P1Reader" type="Node" parent="." unique_id=114716269]
+script = ExtResource("5_tnrp5")
+metadata/_custom_type_script = "uid://dnaqxcxd23sx5"
+
+[node name="P2Reader" type="Node" parent="." unique_id=1423196628]
+script = ExtResource("6_u042d")
+metadata/_custom_type_script = "uid://duomb44dek3pm"
+
+[node name="MovementHandler" type="Node" parent="." unique_id=685155674]
+script = ExtResource("4_3vsrn")
+metadata/_custom_type_script = "uid://cgpfox43rjfo0"

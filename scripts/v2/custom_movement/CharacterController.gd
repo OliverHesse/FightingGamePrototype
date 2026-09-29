@@ -8,32 +8,35 @@ class_name CharacterController
 @export var inputReader:InputReader
 
 var deltaX = 0
-var deltaY = 10
+var deltaY = 0
+
+signal state_changed(stateMachine:SimpleStateMachine)
+
 func isOnFloor()->bool:
 	return position.y + getFeet() >= getGroundY()
 
 func getLeftSide()->int:
-	return($PushBox/CollisionShape2D.shape.get_rect().size.x/2-$PushBox/CollisionShape2D.position.x) *self.scale.x
+	if scale.x >= 1:
+		return abs($PushBox/CollisionShape2D.shape.get_rect().size.x/2+$PushBox/CollisionShape2D.position.x) 
+	return abs($PushBox/CollisionShape2D.position.x+$PushBox/CollisionShape2D.shape.get_rect().size.x/2) 
 func getRightSide()->int:
-	return($PushBox/CollisionShape2D.position.x-$PushBox/CollisionShape2D.shape.get_rect().size.x/2) *self.scale.x
+	if scale.x >= 1:
+		return abs($PushBox/CollisionShape2D.position.x+$PushBox/CollisionShape2D.shape.get_rect().size.x/2) 
+	return abs($PushBox/CollisionShape2D.shape.get_rect().size.x/2+$PushBox/CollisionShape2D.position.x) 
+		
 func getTop()->int:
-	return($PushBox/CollisionShape2D.position.y-$PushBox/CollisionShape2D.shape.get_rect().size.y/2) *self.scale.y
+	return abs($PushBox/CollisionShape2D.shape.get_rect().size.y/2-$PushBox/CollisionShape2D.position.y) 
 func getFeet() ->int:
-	return($PushBox/CollisionShape2D.position.y-$PushBox/CollisionShape2D.shape.get_rect().size.y/2) *self.scale.y
-#
+	return abs($PushBox/CollisionShape2D.position.y-$PushBox/CollisionShape2D.shape.get_rect().size.y/2)
+
+func getForwardDirection()->int:
+	return get_parent().getForwardDirection(self)
 
 func move(velocity:Vector2):
 	deltaX += velocity.x
 	deltaY += velocity.y
 
-func testApplyGravity():
-	if !isOnFloor():
-		position.y += 5
-	else:
-		position.y = getGroundY()-localFeet()
-
-func getForwardDirection()->int:
-	return 1;
+	
 
 func getGroundY() ->int:
 	return get_parent().getGroundY() 
@@ -42,10 +45,11 @@ func getLeftWallX() ->int:
 func getRightWallX()->int:
 	return get_parent().getRightWall()
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-func _physics_process(delta: float) -> void:
 
-	print(isOnFloor())
-	testApplyGravity()
+func processFrame(delta:float)->void:
+	inputReader.processFrame()
+	if stateMachine.processFrame(delta,self,inputReader):
+		state_changed.emit(stateMachine)
+	
+func resolveState()->void:
+	stateMachine.resolveState(self,inputReader)

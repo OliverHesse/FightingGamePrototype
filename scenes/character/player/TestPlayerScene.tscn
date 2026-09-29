@@ -1,10 +1,48 @@
 [gd_scene format=3 uid="uid://dc38cajc15jul"]
 
-[ext_resource type="Script" uid="uid://b87mdxcry8e6a" path="res://scripts/CharacterController.gd" id="1_dpphg"]
 [ext_resource type="Texture2D" uid="uid://bv4gcuhah1ouy" path="res://textures/characters/test_character_1/test_character_1.png" id="2_haxfm"]
 [ext_resource type="Script" uid="uid://dnoyul0dq4j0a" path="res://scripts/debug/ReadState.gd" id="2_id2wk"]
 [ext_resource type="Script" uid="uid://dnaqxcxd23sx5" path="res://scripts/input/LocalPlayerInputReader.gd" id="3_f1b2u"]
-[ext_resource type="Script" uid="uid://fjh52dvt5mqy" path="res://scripts/state_machine/StateMachine.gd" id="4_ruxaf"]
+[ext_resource type="Script" path="res://scripts/state_machine/StateMachine.gd" id="4_ruxaf"]
+
+[sub_resource type="GDScript" id="GDScript_lvskt"]
+script/source = "extends CharacterBody2D
+class_name PlayerController
+# does not need to be a human, cpu count as player
+signal state_changed(stateMachine:StateMachine)
+
+@export var stateMachine:StateMachine
+@export var inputReader:InputReader
+@export var colliderBox :CollisionShape2D
+
+func getWidth()->float:
+	
+	return colliderBox.shape.get_rect().size.x
+func getHeight()->float:
+	return colliderBox.shape.get_rect().size.y
+func play_animation(anim:String,speed:float = 1)->void:
+	
+	$AnimationPlayer.play(anim,-1,speed)
+	
+func getForwardDirection()->int:
+	return get_parent().getForwardDirection(self)
+
+func _ready() -> void:
+	stateMachine.init(self,inputReader)
+	state_changed.emit(stateMachine)
+
+func changeDirection() ->void:
+	var dir = getForwardDirection()
+	for child in get_children():
+		if child is Node2D:
+			child.scale.x	= dir*abs(child.scale.x)
+
+func _physics_process(delta: float) -> void:
+	inputReader.processFrame()
+
+	if stateMachine.processFrame(delta):
+		state_changed.emit(stateMachine)
+"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ctc8u"]
 size = Vector2(18, 49)
@@ -298,7 +336,7 @@ _data = {
 }
 
 [node name="TestPlayerScene" type="CharacterBody2D" unique_id=1958882451 node_paths=PackedStringArray("stateMachine", "inputReader", "colliderBox")]
-script = ExtResource("1_dpphg")
+script = SubResource("GDScript_lvskt")
 stateMachine = NodePath("StateMachine")
 inputReader = NodePath("LocalPlayerInputReader")
 colliderBox = NodePath("CollisionBox")

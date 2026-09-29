@@ -2,9 +2,11 @@
 
 [ext_resource type="Script" uid="uid://chknwl7sso3k7" path="res://scripts/v2/custom_movement/CharacterController.gd" id="1_7dicd"]
 [ext_resource type="Texture2D" uid="uid://bv4gcuhah1ouy" path="res://textures/characters/test_character_1/test_character_1.png" id="2_m23li"]
+[ext_resource type="Script" uid="uid://c4nsbj5hwwjgo" path="res://scripts/v2/StateMachine.gd" id="3_m23li"]
+[ext_resource type="Script" uid="uid://dnoyul0dq4j0a" path="res://scripts/debug/ReadState.gd" id="4_0mlr8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ctc8u"]
-size = Vector2(24, 47.5)
+size = Vector2(24, 51)
 
 [sub_resource type="Animation" id="Animation_7dicd"]
 length = 0.001
@@ -45,14 +47,17 @@ _data = {
 &"idle": SubResource("Animation_m23li")
 }
 
-[node name="Character" type="Node2D" unique_id=330441746 node_paths=PackedStringArray("pushBox")]
+[sub_resource type="LabelSettings" id="LabelSettings_0mlr8"]
+
+[node name="Character" type="Node2D" unique_id=330441746 node_paths=PackedStringArray("pushBox", "stateMachine")]
 script = ExtResource("1_7dicd")
 pushBox = NodePath("PushBox")
+stateMachine = NodePath("SimpleStateMachine")
 
 [node name="PushBox" type="Area2D" parent="." unique_id=964092516]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PushBox" unique_id=1907716042]
-position = Vector2(0, 1.75)
+position = Vector2(13, 0)
 shape = SubResource("RectangleShape2D_ctc8u")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=977959189]
@@ -63,3 +68,21 @@ vframes = 20
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1679687182]
 libraries/ = SubResource("AnimationLibrary_0mlr8")
+
+[node name="SimpleStateMachine" type="Node" parent="." unique_id=1877521883]
+script = ExtResource("3_m23li")
+metadata/_custom_type_script = "uid://c4nsbj5hwwjgo"
+
+[node name="Label" type="Label" parent="." unique_id=1753463272]
+offset_left = -21.0
+offset_top = -49.0
+offset_right = 21.0
+offset_bottom = -26.0
+pivot_offset = Vector2(21, 11)
+text = "None"
+label_settings = SubResource("LabelSettings_0mlr8")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("4_0mlr8")
+
+[connection signal="state_changed" from="." to="Label" method="_on_character_state_changed"]
