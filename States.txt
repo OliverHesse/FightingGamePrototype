@@ -10,3 +10,15 @@ because of this i can simplify some of the states
 (e.g only one Move state, but pass an X velocity and animation (so i can do sprint as well))
 
 this will also make the transition from testing to data driven easier
+
+
+a problem.
+
+states return the state we should change to.
+then the state machine loads that new state.
+
+problem is the state machine laods it at the end of the frame, so the state of someone getting attacked
+changes before we reach the second characters turn, so the data they are reacting to changes
+
+for this reason i will change it. the state machine holds a var called nextState
+and at the start of the frame handles anything related to the next state

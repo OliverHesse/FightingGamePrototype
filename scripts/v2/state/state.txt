@@ -1,0 +1,5 @@
+like transitions these states need an associated type.
+this type is used to parse and create providers for them
+
+take movement state, it needs to be able to move itself on the X axis, so 
+the type ensures we can get this
