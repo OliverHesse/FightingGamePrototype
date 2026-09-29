@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://bhw5j5eue7y2t"]
+
+[ext_resource type="Script" uid="uid://chknwl7sso3k7" path="res://scripts/custom_movement/CharacterController.gd" id="1_y0alc"]
+
+[node name="Tt" type="Node2D" unique_id=1756577399]
+script = ExtResource("1_y0alc")
+metadata/_custom_type_script = "uid://chknwl7sso3k7"

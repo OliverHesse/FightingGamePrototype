@@ -8,13 +8,7 @@ func processCharacter(character:CharacterController)->void:
 	var newX = character.position.x+character.deltaX
 	var newY = character.position.y+character.deltaY
 	
-	for collision in character.pushBox.get_overlapping_bodies():
-		if collision is TileMapLayer:
-			collision.
-		print(collision.to_string())
-	
-	character.position.x = newX
-	character.position.y = newY
+
 
 func processMovement(characters:Array[CharacterController])->void:
 	for character in characters:

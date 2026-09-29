@@ -17,6 +17,9 @@ sources/0 = SubResource("TileSetAtlasSource_xvhtr")
 [node name="TestScene2" type="Node2D" unique_id=1321890126 node_paths=PackedStringArray("characters")]
 script = ExtResource("1_xvhtr")
 characters = [NodePath("Character")]
+ground = 510
+leftWall = 250
+rightWall = 825
 
 [node name="Character" parent="." unique_id=1385581417 instance=ExtResource("1_2143h")]
 position = Vector2(748.96204, 354.58072)
@@ -26,5 +29,18 @@ tile_map_data = PackedByteArray("AAAAACAAAAAAAAAAAAABACAAAAAAAAAAAAACACAAAAAAAAA
 tile_set = SubResource("TileSet_3vsrn")
 collision_visibility_mode = 1
 
-[node name="Node2D" type="Node2D" parent="." unique_id=1937744955]
+[node name="LEFT" type="Node2D" parent="." unique_id=1937744955]
+position = Vector2(249, 439)
 script = ExtResource("4_3vsrn")
+
+[node name="GROUND" type="Node2D" parent="." unique_id=1581128354]
+position = Vector2(539, 513)
+script = ExtResource("4_3vsrn")
+
+[node name="RIGHT" type="Node2D" parent="." unique_id=1885179916]
+position = Vector2(824, 439)
+script = ExtResource("4_3vsrn")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1385828618]
+position = Vector2(751, 427)
+zoom = Vector2(2, 2)

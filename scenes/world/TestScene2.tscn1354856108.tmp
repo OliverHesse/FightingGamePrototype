@@ -1,40 +1,42 @@
-[gd_scene format=4 uid="uid://dkqkei0y6vddc"]
+[gd_scene format=4 uid="uid://1i5f6rxoo8lm"]
 
-[ext_resource type="Script" uid="uid://lup5rwr5hwmr" path="res://scripts/level/SimpleRoundController.gd" id="1_btak7"]
-[ext_resource type="Texture2D" uid="uid://bnk82a3wvp1lg" path="res://textures/world/temp/TempTile.png" id="1_nxn1o"]
-[ext_resource type="PackedScene" uid="uid://dc38cajc15jul" path="res://scenes/character/player/TestPlayerScene.tscn" id="2_my356"]
-[ext_resource type="PackedScene" uid="uid://bsojx85atvghx" path="res://scenes/character/Dummy.tscn" id="3_6a62e"]
+[ext_resource type="PackedScene" uid="uid://y7e7pu70wrj5" path="res://scenes/character/Character.tscn" id="1_2143h"]
+[ext_resource type="Script" uid="uid://bd3j34hd3ka2a" path="res://scenes/world/Test.gd" id="1_xvhtr"]
+[ext_resource type="Texture2D" uid="uid://bnk82a3wvp1lg" path="res://textures/world/temp/TempTile.png" id="2_hfw4b"]
+[ext_resource type="Script" uid="uid://cgpfox43rjfo0" path="res://scripts/custom_movement/MovementHandler.gd" id="4_3vsrn"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_my356"]
-texture = ExtResource("1_nxn1o")
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xvhtr"]
+texture = ExtResource("2_hfw4b")
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
-[sub_resource type="TileSet" id="TileSet_ctc8u"]
+[sub_resource type="TileSet" id="TileSet_3vsrn"]
 physics_layer_0/collision_layer = 1
-sources/0 = SubResource("TileSetAtlasSource_my356")
+sources/0 = SubResource("TileSetAtlasSource_xvhtr")
 
-[node name="TestLevel" type="Node2D" unique_id=376327165 node_paths=PackedStringArray("player1", "player2")]
-script = ExtResource("1_btak7")
-player1 = NodePath("TestPlayerScene")
-player2 = NodePath("Dummy")
+[node name="TestScene2" type="Node2D" unique_id=1321890126 node_paths=PackedStringArray("characters")]
+script = ExtResource("1_xvhtr")
+characters = [NodePath("Character")]
+ground = 540
+leftWall = 250
+rightWall = 825
 
-[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1126645056]
+[node name="Character" parent="." unique_id=1385581417 instance=ExtResource("1_2143h")]
+position = Vector2(748.96204, 354.58072)
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=257380357]
 tile_map_data = PackedByteArray("AAAAACAAAAAAAAAAAAABACAAAAAAAAAAAAACACAAAAAAAAAAAAADACAAAAAAAAAAAAAEACAAAAAAAAAAAAAFACAAAAAAAAAAAAAGACAAAAAAAAAAAAAHACAAAAAAAAAAAAAIACAAAAAAAAAAAAAJACAAAAAAAAAAAAAKACAAAAAAAAAAAAALACAAAAAAAAAAAAAMACAAAAAAAAAAAAANACAAAAAAAAAAAAAOACAAAAAAAAAAAAAPACAAAAAAAAAAAAAQACAAAAAAAAAAAAARACAAAAAAAAAAAAASACAAAAAAAAAAAAATACAAAAAAAAAAAAAUACAAAAAAAAAAAAAVACAAAAAAAAAAAAAWACAAAAAAAAAAAAAXACAAAAAAAAAAAAAYACAAAAAAAAAAAAAZACAAAAAAAAAAAAAaACAAAAAAAAAAAAAbACAAAAAAAAAAAAAcACAAAAAAAAAAAAAdACAAAAAAAAAAAAAeACAAAAAAAAAAAAAfACAAAAAAAAAAAAAgACAAAAAAAAAAAAAhACAAAAAAAAAAAAAiACAAAAAAAAAAAAAjACAAAAAAAAAAAAAkACAAAAAAAAAAAAAlACAAAAAAAAAAAAAmACAAAAAAAAAAAAAnACAAAAAAAAAAAAAoACAAAAAAAAAAAAApACAAAAAAAAAAAAAqACAAAAAAAAAAAAArACAAAAAAAAAAAAAsACAAAAAAAAAAAAAtACAAAAAAAAAAAAAuACAAAAAAAAAAAAAvACAAAAAAAAAAAAAwACAAAAAAAAAAAAAxACAAAAAAAAAAAAAyACAAAAAAAAAAAAAzACAAAAAAAAAAAAA0ACAAAAAAAAAAAAA1ACAAAAAAAAAAAAA2ACAAAAAAAAAAAAA3ACAAAAAAAAAAAAA4ACAAAAAAAAAAAAA5ACAAAAAAAAAAAAA6ACAAAAAAAAAAAAA7ACAAAAAAAAAAAAA8ACAAAAAAAAAAAAA9ACAAAAAAAAAAAAA+ACAAAAAAAAAAAAA/ACAAAAAAAAAAAABAACAAAAAAAAAAAABBACAAAAAAAAAAAABCACAAAAAAAAAAAABDACAAAAAAAAAAAABEACAAAAAAAAAAAABFACAAAAAAAAAAAABGACAAAAAAAAAAAABHACAAAAAAAAAAAAAPAB8AAAAAAAAAAAAPAB4AAAAAAAAAAAAPAB0AAAAAAAAAAAAPABwAAAAAAAAAAAAPABsAAAAAAAAAAAAPABoAAAAAAAAAAAAPABkAAAAAAAAAAAAPABgAAAAAAAAAAAAPABcAAAAAAAAAAAAPABYAAAAAAAAAAAAPABUAAAAAAAAAAAAPABQAAAAAAAAAAAAPABMAAAAAAAAAAAAPABIAAAAAAAAAAAAPABEAAAAAAAAAAAAzAB8AAAAAAAAAAAAzAB4AAAAAAAAAAAAzAB0AAAAAAAAAAAAzABwAAAAAAAAAAAAzABsAAAAAAAAAAAAzABoAAAAAAAAAAAAzABkAAAAAAAAAAAAzABgAAAAAAAAAAAAzABcAAAAAAAAAAAAzABYAAAAAAAAAAAAzABUAAAAAAAAAAAAzABQAAAAAAAAAAAAzABMAAAAAAAAAAAAzABIAAAAAAAAAAAAzABEAAAAAAAAAAAAzABAAAAAAAAAAAAA=")
-tile_set = SubResource("TileSet_ctc8u")
+tile_set = SubResource("TileSet_3vsrn")
 collision_visibility_mode = 1
 
-[node name="Dummy" parent="." unique_id=1993435847 instance=ExtResource("3_6a62e")]
+[node name="LEFT" type="Node2D" parent="." unique_id=1937744955]
+position = Vector2(249, 439)
+script = ExtResource("4_3vsrn")
 
-[node name="TestPlayerScene" parent="." unique_id=1958882451 instance=ExtResource("2_my356")]
-position = Vector2(309, 431)
+[node name="GROUND" type="Node2D" parent="." unique_id=1581128354]
+position = Vector2(539, 513)
+script = ExtResource("4_3vsrn")
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1019686817]
-position = Vector2(524, 417)
-zoom = Vector2(3, 3)
-
-[node name="P1Spawn" type="Node2D" parent="." unique_id=682550173]
-position = Vector2(382, 449)
-
-[node name="P2Spawn" type="Node2D" parent="." unique_id=1790896393]
-position = Vector2(643, 449)
+[node name="RIGHT" type="Node2D" parent="." unique_id=1885179916]
+position = Vector2(824, 439)
+script = ExtResource("4_3vsrn")

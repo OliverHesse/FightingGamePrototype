@@ -1,0 +1,12 @@
+States are going to be fully data driven
+
+
+So for example 2 different attack states would both use the same attack state,
+but have differnt meta data
+
+because of this i can simplify some of the states
+
+(e.g only a single jump state, but when making it pass in an x velocity)
+(e.g only one Move state, but pass an X velocity and animation (so i can do sprint as well))
+
+this will also make the transition from testing to data driven easier
