@@ -1,7 +1,0 @@
-for my game to function, i will need a lot more fine control over the animation player, 
-and on top of that the actual features I need from the existing one are minimal
-
-I want my final style to be 3rd strike esk, and because of that all i actually need is frames
-and the ability to change frames, and the ability to say when to change
-
-I want this to all be definable through files
