@@ -57,7 +57,6 @@ stateMachine = NodePath("SimpleStateMachine")
 [node name="PushBox" type="Area2D" parent="." unique_id=964092516]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PushBox" unique_id=1907716042]
-position = Vector2(13, 0)
 shape = SubResource("RectangleShape2D_ctc8u")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=977959189]

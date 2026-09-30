@@ -14,15 +14,18 @@ signal state_changed(stateMachine:SimpleStateMachine)
 
 func isOnFloor()->bool:
 	return position.y + getFeet() >= getGroundY()
-
+func isAgainstLeftWall()->bool:
+	return position.x -getLeftSide() <= getLeftWallX()
+func isAgainstRightWall()->bool:
+	return position.x +getRightSide() >= getRightWallX()
 func getLeftSide()->int:
 	if scale.x >= 1:
-		return abs($PushBox/CollisionShape2D.shape.get_rect().size.x/2+$PushBox/CollisionShape2D.position.x) 
+		return abs($PushBox/CollisionShape2D.shape.get_rect().size.x/2-$PushBox/CollisionShape2D.position.x) 
 	return abs($PushBox/CollisionShape2D.position.x+$PushBox/CollisionShape2D.shape.get_rect().size.x/2) 
 func getRightSide()->int:
 	if scale.x >= 1:
 		return abs($PushBox/CollisionShape2D.position.x+$PushBox/CollisionShape2D.shape.get_rect().size.x/2) 
-	return abs($PushBox/CollisionShape2D.shape.get_rect().size.x/2+$PushBox/CollisionShape2D.position.x) 
+	return abs($PushBox/CollisionShape2D.shape.get_rect().size.x/2-$PushBox/CollisionShape2D.position.x) 
 		
 func getTop()->int:
 	return abs($PushBox/CollisionShape2D.shape.get_rect().size.y/2-$PushBox/CollisionShape2D.position.y) 

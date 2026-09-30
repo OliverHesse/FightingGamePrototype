@@ -26,11 +26,11 @@ leftWall = 256
 rightWall = 816
 
 [node name="Character" parent="." unique_id=1385581417 node_paths=PackedStringArray("inputReader") instance=ExtResource("1_2143h")]
-position = Vector2(636, 480)
+position = Vector2(693, 421)
 inputReader = NodePath("../P1Reader")
 
 [node name="Character2" parent="." unique_id=330441746 node_paths=PackedStringArray("inputReader") instance=ExtResource("1_2143h")]
-position = Vector2(492, 480)
+position = Vector2(576, 407)
 inputReader = NodePath("../P2Reader")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=257380357]
@@ -51,7 +51,7 @@ position = Vector2(816, 439)
 script = ExtResource("4_3vsrn")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1385828618]
-position = Vector2(501, 412)
+position = Vector2(580, 420)
 zoom = Vector2(2, 2)
 
 [node name="P1Reader" type="Node" parent="." unique_id=114716269]

@@ -11,4 +11,6 @@ func _init(transitions : Array[StateTransition],xVelocity:int) -> void:
 	self.xVelocity = xVelocity;
 
 func processFrame(delta:float):
+	character.scale.x = sign(character.getForwardDirection())	
+
 	character.move(Vector2(xVelocity,0))

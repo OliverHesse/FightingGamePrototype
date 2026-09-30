@@ -10,17 +10,15 @@ func resolveMovement(character:CharacterController):
 	for area in character.pushBox.get_overlapping_areas():
 		var node = area.get_parent()
 		if node is CharacterController:
-			print("collision")
-			#clamp movement on x
-			#check x positions so we know what to check
-			if character.position.x < node.position.x:
-				newX = getClampedX(min(node.position.x+node.getLeftSide()+character.getRightSide(),newX),character)
-			else:
-				print("HEEELO")
-				print(character.position.x)
-				print(node.position.x)
-				print(node.getRightSide())
-				print(node.position.x+node.getRightSide()+character.getLeftSide())
+			
+			if character.isAgainstRightWall() and node.isAgainstRightWall() and not character.isOnFloor():
+				print("push right")
+				newX = getClampedX(min(node.position.x-node.getLeftSide()-character.getRightSide(),newX),character)
+			elif character.isAgainstLeftWall() and node.isAgainstLeftWall() and not character.isOnFloor():
+				newX = getClampedX(max(node.position.x+node.getRightSide()+character.getLeftSide(),newX),character)
+			elif character.position.x < node.position.x:
+				newX = getClampedX(min(node.position.x-node.getLeftSide()-character.getRightSide(),newX),character)
+			else:		
 				newX = getClampedX(max(node.position.x+node.getRightSide()+character.getLeftSide(),newX),character)
 				
 			#might not need to worry about y, since x will already push if they overlap
