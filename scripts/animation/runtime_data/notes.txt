@@ -1,0 +1,21 @@
+will use a type like "sprite_track"
+
+to define an animation track
+
+for sprite i need
+x
+y
+frameX
+frameY
+flipX
+flipY
+
+for colliders i need a few things
+
+active
+x
+y
+width
+height
+flipX(jyst scale)
+flipY(just scale)
